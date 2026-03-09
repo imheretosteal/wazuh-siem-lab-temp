@@ -30,7 +30,7 @@ The SIEM environment consists of the following components:
 
 The Wazuh SIEM server was installed on an Ubuntu virtual machine.
 
-![Wazuh Installation](w)
+![Wazuh Installation](https://github.com/imheretosteal/wazuh-siem-lab-temp/blob/ba9bd968af582f19588ccec291e4e51676ee2871/wazuh-installation.png)
 
 ---
 
