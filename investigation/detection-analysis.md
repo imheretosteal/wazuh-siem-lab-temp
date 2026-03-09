@@ -6,7 +6,7 @@ The Wazuh manager was installed on an Ubuntu virtual machine.
 
 This server collects logs from monitored endpoints.
 
-![Wazuh Installation](../screenshots/wazuh-installation.png)
+![Wazuh Installation](https://github.com/imheretosteal/wazuh-siem-lab-temp/blob/779dfb63ae3744c4887671c78def449c0f0d6d50/wazuh-installation.png)
 
 ---
 
