@@ -19,26 +19,30 @@ This IP address is used to access the Wazuh dashboard from the browser.
 ![Ubuntu Server IP](https://github.com/imheretosteal/wazuh-siem-lab-temp/blob/5cbbe173437cda26c9b8e506bc61bb9ef13b5f01/ubuntu-ip-config.png)
 
 ---
+## Step 3 – Attack Script Used for Simulation
 
-## Step 3 – File Integrity Monitoring Configuration
+To simulate suspicious activity, a PowerShell command was executed on the Windows endpoint to automatically generate multiple files inside the monitored directory `C:\wazuh\wazuh_test`.
 
-A monitored directory was created on the Windows endpoint to track suspicious file activity.
+The command created several files rapidly inside the folder. This type of behavior can be used to test how security monitoring systems detect abnormal file activity.
 
-C:\wazuh\wazuh_test
+The following screenshot shows the PowerShell command used to generate the files.
 
-The Wazuh agent monitors this directory using File Integrity Monitoring (FIM).  
-Any file creation, deletion, or modification inside this directory will generate security events that are sent to the Wazuh SIEM server.
+![Attack Simulation](https://github.com/imheretosteal/wazuh-siem-lab-temp/blob/5cbbe173437cda26c9b8e506bc61bb9ef13b5f01/attack-simulation-powershell.png)
+
 ---
 
-## Step 4 – Attack Simulation
+## Step 4 – Suspicious File Activity Generated
 
-To simulate suspicious activity, multiple files were created using PowerShell.
+After executing the script, multiple files were created inside the monitored directory `C:\wazuh\wazuh_test`.
 
+Files such as `file1.txt`, `file2.txt`, up to `file20.txt` appeared in the folder, demonstrating how quickly automated scripts can generate large numbers of files.
 
+Since this directory is monitored by **Wazuh File Integrity Monitoring (FIM)**, each file creation event is logged and sent to the Wazuh SIEM server for analysis.
 
-This behavior mimics ransomware activity.
+The screenshot below shows the files created inside the monitored directory.
 
-![Attack Simulation](https://github.com/imheretosteal/wazuh-siem-lab-temp/blob/5cbbe173437cda26c9b8e506bc61bb9ef13b5f01/attack-simulation-powershell.png))
+![Created Test Files](https://github.com/imheretosteal/wazuh-siem-lab-temp/blob/5cbbe173437cda26c9b8e506bc61bb9ef13b5f01/created-test-files.png)
+
 
 ---
 
