@@ -50,7 +50,7 @@ The File Integrity Monitoring (FIM) module detected these file creation events.
 ![File Creation Detection](file-creation-detected.png)
 
 🔎 **Detailed investigation report:**
-[View File Integrity Monitoring Investigation](investigation/detection-analysis.md)
+[View File Integrity Monitoring Investigation](i)
 
 ---
 
