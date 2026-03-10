@@ -1,75 +1,90 @@
-# wazuh-siem-lab-temp  
-
-# Wazuh SIEM Home Lab – Suspicious File Activity Detection
+# Wazuh SIEM Home Lab – Security Monitoring and Detection
 
 ## Overview
 
-This project demonstrates how a **Security Information and Event Management (SIEM)** system can detect suspicious file activity using **Wazuh File Integrity Monitoring (FIM)**.
+This project demonstrates how a **Security Information and Event Management (SIEM)** system can detect suspicious activity on monitored endpoints.
 
-A simulated attack was performed on a Windows endpoint by automatically creating multiple files inside a monitored directory.
-The Wazuh SIEM successfully detected this activity and generated security alerts.
+A Wazuh SIEM environment was deployed in a virtual lab to simulate and analyze security events.
+Two different attack scenarios were performed and investigated:
 
-This lab demonstrates a basic **SOC investigation workflow** from attack simulation to detection.
+1. Suspicious file creation activity (ransomware-like behavior)
+2. Authentication failure attempts (password guessing simulation)
+
+The Wazuh SIEM successfully detected both activities using security monitoring and log analysis.
 
 ---
 
-## Lab Architecture
-
-The SIEM environment consists of the following components:
+## Lab Environment
 
 | Component                 | Description                                       |
 | ------------------------- | ------------------------------------------------- |
 | Wazuh Manager             | SIEM server running on Ubuntu                     |
-| Windows Endpoint          | Monitored system running the Wazuh agent          |
+| Windows Endpoint          | Monitored machine running the Wazuh agent         |
 | File Integrity Monitoring | Detects file creation, modification, and deletion |
-| PowerShell Script         | Used to simulate suspicious activity              |
+| Threat Hunting            | Used to analyze authentication events             |
 
 ---
 
-## Wazuh Installation
+## Attack Scenario 1 – Suspicious File Activity
 
-The Wazuh SIEM server was installed on an Ubuntu virtual machine.
+A PowerShell script was executed to automatically create multiple files inside a monitored directory:
 
-![Wazuh Installation](https://github.com/imheretosteal/wazuh-siem-lab-temp/blob/ba9bd968af582f19588ccec291e4e51676ee2871/wazuh-installation.png)
-
----
-
-## Attack Simulation
-
-To simulate suspicious behavior, a PowerShell script created multiple files inside a monitored directory:
-
-```
+```id="4hgrul"
 C:\wazuh\wazuh_test
 ```
 
-This behavior is similar to ransomware activity where many files are created or modified rapidly.
+Rapid file creation like this can resemble **ransomware behavior** where malware modifies many files quickly.
 
-![Attack Simulation](https://github.com/imheretosteal/wazuh-siem-lab-temp/blob/5cbbe173437cda26c9b8e506bc61bb9ef13b5f01/attack-simulation-powershell.png)
+### Attack Simulation
+
+![Attack Simulation](attack-simulation-powershell.png)
+
+### Files Created
+
+![Created Files](created-test-files.png)
+
+### Detection in Wazuh
+
+The File Integrity Monitoring (FIM) module detected these file creation events.
+
+![File Creation Detection](file-creation-detected.png)
+
+🔎 **Detailed investigation report:**
+[View File Integrity Monitoring Investigation](investigation/detection-analysis.md)
 
 ---
 
-## Detection in Wazuh
+## Attack Scenario 2 – Authentication Failure Activity
 
-After the attack simulation, Wazuh detected multiple file creation events using **File Integrity Monitoring (FIM)**.
+To simulate unauthorized access attempts, multiple login attempts were performed using incorrect credentials.
 
-### Wazuh Dashboard
+This behavior mimics a **password guessing or brute-force attack**.
 
-![Wazuh Dashboard](https://github.com/imheretosteal/wazuh-siem-lab-temp/blob/5cbbe173437cda26c9b8e506bc61bb9ef13b5f01/wazuh-dashboard-overview.png)
+### Failed Login Attempts
 
-### File Creation Detection Logs
+![Authentication Attempt](authentication-attempt.png)
 
-![File Creation Logs](https://github.com/imheretosteal/wazuh-siem-lab-temp/blob/5cbbe173437cda26c9b8e506bc61bb9ef13b5f01/file-creation-detected.png)
+### Authentication Logs in Wazuh
+
+![Authentication Logs](authentication-logs.png)
+
+### Threat Hunting Dashboard
+
+![Authentication Dashboard](authentication-dashboard.png)
+
+🔎 **Detailed investigation report:**
+[View Authentication Investigation](investigation/authentication-analysis.md)
 
 ---
 
 ## Skills Demonstrated
 
 * SIEM deployment and configuration
-* Endpoint monitoring using Wazuh agents
+* Security monitoring using Wazuh
 * File Integrity Monitoring (FIM)
-* Security event analysis
-* Basic SOC investigation workflow
+* Log analysis and threat hunting
 * Attack simulation using PowerShell
+* Authentication event analysis
 
 ---
 
@@ -83,22 +98,8 @@ After the attack simulation, Wazuh detected multiple file creation events using 
 
 ---
 
-## Project Structure
-
-```
-architecture/
-attack-simulation/
-investigation/
-setup-guide/
-README.md
-```
-
-Each folder contains documentation explaining the setup process, attack simulation, and detection analysis.
-
----
-
 ## Key Takeaway
 
-This lab demonstrates how SIEM platforms like **Wazuh** can detect suspicious file activity in real time.
-Such detection capabilities are important for identifying potential ransomware behavior and responding to security incidents.
+This lab demonstrates how SIEM platforms like **Wazuh** can detect suspicious behavior such as abnormal file activity and repeated authentication failures.
 
+These detection capabilities are critical for identifying **potential ransomware activity and unauthorized access attempts** in real-world security operations.
