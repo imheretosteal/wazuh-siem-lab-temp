@@ -73,7 +73,7 @@ This behavior mimics a **password guessing or brute-force attack**.
 ![Authentication Dashboard](authentication-dashboard.png)
 
 🔎 **Detailed investigation report:**
-[View Authentication Investigation](investigation/authentication-analysis.md)
+[View Authentication Investigation](https://github.com/imheretosteal/wazuh-siem-lab-temp/blob/e9482a77217752cfef9876677c8d029d331d9fbc/investigation/authentication-bruteforce-investigation.md)
 
 ---
 
